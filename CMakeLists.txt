@@ -12,7 +12,12 @@ endif()
 project ("glfw-example")
 
 # Add source to this project's executable.
-add_executable (glfw-example "glfw-example.cpp" "glfw-example.h")
+include_directories("deps")
+add_subdirectory("deps/glfw")
+
+add_executable (glfw-example "glfw-example.c"  "deps/glad/gl.h" "deps/linmath.h")
+target_link_libraries(glfw-example glfw)
+
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET glfw-example PROPERTY CXX_STANDARD 20)
